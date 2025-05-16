@@ -19,6 +19,8 @@ public class CheckoutPage {
 
     private By overviewTitle = By.className("title");
     private By confirmationMessage = By.className("complete-header");
+    private By errorMessage = By.cssSelector("h3[data-test='error']");
+
 
     public CheckoutPage(WebDriver driver) {
         this.driver = driver;
@@ -46,4 +48,9 @@ public class CheckoutPage {
     public String getConfirmationMessage() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(confirmationMessage)).getText();
     }
+
+    public String getErrorMessage() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage)).getText();
+    }
+
 }
