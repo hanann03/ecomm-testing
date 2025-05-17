@@ -8,6 +8,8 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BaseTest {
     public static WebDriver driver;
@@ -16,9 +18,23 @@ public class BaseTest {
 
     @BeforeSuite
     public void setupReport() {
-        ExtentSparkReporter spark = new ExtentSparkReporter("test-output/ExtentReport.html");
+        // Create timestamp for unique report name
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        String reportName = "test-output/ExtentReport_" + timeStamp + ".html";
+        
+        ExtentSparkReporter spark = new ExtentSparkReporter(reportName);
+        // Set report configuration
+        spark.config().setDocumentTitle("E-commerce Test Automation Report");
+        spark.config().setReportName("Test Execution Report");
+        spark.config().setTheme(Theme.DARK);
+        
         extent = new ExtentReports();
         extent.attachReporter(spark);
+        
+        // Add system information
+        extent.setSystemInfo("Environment", "QA");
+        extent.setSystemInfo("Browser", "Chrome");
+        extent.setSystemInfo("OS", System.getProperty("os.name"));
     }
 
     @BeforeMethod
