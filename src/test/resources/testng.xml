@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="E-commerce Test Suite">
+    <test name="Login Tests">
+        <classes>
+            <class name="Tests.LoginTest"/>
+            <class name="Tests.LoginTestFail"/>
+        </classes>
+    </test>
+
+    <test name="Product Tests">
+        <classes>
+            <class name="Tests.ProductSearchTest"/>
+            <class name="Tests.FilterTest"/>
+        </classes>
+    </test>
+
+    <test name="Cart Tests">
+        <classes>
+            <class name="Tests.CartTest"/>
+        </classes>
+    </test>
+
+    <test name="Checkout Tests">
+        <classes>
+            <class name="Tests.CheckoutFlowTest"/>
+            <class name="Tests.CheckoutFailTest"/>
+        </classes>
+    </test>
+
+    <!-- Test Parameters -->
+    <parameter name="browser" value="chrome"/>
+    <parameter name="implicitWait" value="10"/>
+    <parameter name="pageLoadTimeout" value="30"/>
+
+    <!-- Listeners -->
+    <listeners>
+        <listener class-name="com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter"/>
+    </listeners>
+</suite> 
