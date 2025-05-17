@@ -3,6 +3,24 @@
 ## Overview
 This project contains automated tests for an e-commerce website, covering various functionalities including product search, filtering, and other e-commerce features. The test suite is built using Selenium WebDriver and follows the Page Object Model design pattern for better maintainability and reusability.
 
+## Project Structure
+```
+src/
+├── main/
+│   └── java/
+│       └── org/example/
+│           └── Main.java
+├── test/
+│   ├── java/
+│   │   ├── Pages/           # Page Object classes
+│   │   ├── Tests/           # Test classes
+│   │   └── Utils/           # Utility classes
+│   └── resources/
+│       └── testng.xml       # TestNG configuration
+├── pom.xml                  # Maven dependencies
+└── README.md
+```
+
 ## Setup Instructions
 
 ### Prerequisites
@@ -40,6 +58,29 @@ To run specific test classes:
 mvn test -Dtest=TestClassName
 ```
 
+To run specific test groups from testng.xml:
+```bash
+mvn test -Dgroups=login
+```
+
+### Test Reports
+- Test reports are generated in the `test-output` directory
+- Each test run creates a new report with timestamp: `ExtentReport_yyyy.MM.dd.HH.mm.ss.html`
+- Reports include:
+  - Test execution status
+  - Step-by-step test details
+  - System information
+  - Test duration
+
+### Test Configuration
+The project uses TestNG for test execution and configuration:
+- `testng.xml`: Defines test suites, test groups, and parameters
+- Test groups:
+  - Login Tests
+  - Product Tests
+  - Cart Tests
+  - Checkout Tests
+
 ### Test Coverage
 The test suite covers the following scenarios:
 - Product search functionality
@@ -76,4 +117,11 @@ The product search and filter tests are executed on a different website than the
 - Main test website: https://www.saucedemo.com
 - Product search/filter tests: https://demowebshop.tricentis.com
 
-This separation ensures comprehensive test coverage while maintaining the ability to test all required functionality. 
+This separation ensures comprehensive test coverage while maintaining the ability to test all required functionality.
+
+## Dependencies
+Key dependencies in pom.xml:
+- Selenium WebDriver
+- TestNG
+- ExtentReports
+- WebDriverManager 
