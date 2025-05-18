@@ -30,5 +30,29 @@ public class CheckoutFlowTest extends BaseTest {
 
         Assert.assertEquals(checkoutPage.getConfirmationMessage(), "Thank you for your order!");
     }
+
+    @Test
+    public void completeCheckoutFlowSlow() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("standard_user", "secret_sauce");
+
+        CartPage cartPage = new CartPage(driver);
+        cartPage.addFirstProductToCart();
+        
+        cartPage.openCart();
+        cartPage.clickCheckout();
+     
+        CheckoutPage checkoutPage = new CheckoutPage(driver);
+        checkoutPage.enterCheckoutInformation("John", "Doe", "12345");
+       
+        checkoutPage.clickContinue();
+        
+        Assert.assertEquals(checkoutPage.getOverviewTitle(), "Checkout: Overview");
+    
+        checkoutPage.clickFinish();
+        Thread.sleep(2000); 
+
+        Assert.assertEquals(checkoutPage.getConfirmationMessage(), "Thank you for your order!");
+    }
 }
 

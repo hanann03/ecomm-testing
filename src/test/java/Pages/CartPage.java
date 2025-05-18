@@ -2,9 +2,15 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CartPage {
     private WebDriver driver;
+    private WebDriverWait wait;
 
     private By firstAddToCartButton = By.cssSelector("button[id^='add-to-cart']");
     private By firstRemoveButton = By.cssSelector("button[id^='remove']");
@@ -14,29 +20,30 @@ public class CartPage {
 
     public CartPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void addFirstProductToCart() {
-        driver.findElement(firstAddToCartButton).click();
+        wait.until(ExpectedConditions.elementToBeClickable(firstAddToCartButton)).click();
     }
 
     public void removeFirstProductFromCart() {
-        driver.findElement(firstRemoveButton).click();
+        wait.until(ExpectedConditions.elementToBeClickable(firstRemoveButton)).click();
     }
 
     public int getCartBadgeCount() {
         if (driver.findElements(cartBadge).isEmpty()) {
             return 0;
         }
-        String countText = driver.findElement(cartBadge).getText();
+        String countText = wait.until(ExpectedConditions.visibilityOfElementLocated(cartBadge)).getText();
         return Integer.parseInt(countText);
     }
 
     public void openCart() {
-        driver.findElement(cartIcon).click();
+        wait.until(ExpectedConditions.elementToBeClickable(cartIcon)).click();
     }
 
     public void clickCheckout() {
-        driver.findElement(checkoutButton).click();
+        wait.until(ExpectedConditions.elementToBeClickable(checkoutButton)).click();
     }
 }
