@@ -28,12 +28,10 @@
         </classes>
     </test>
 
-    <!-- Test Parameters -->
     <parameter name="browser" value="chrome"/>
     <parameter name="implicitWait" value="10"/>
     <parameter name="pageLoadTimeout" value="30"/>
 
-    <!-- Listeners -->
     <listeners>
         <listener class-name="com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter"/>
     </listeners>

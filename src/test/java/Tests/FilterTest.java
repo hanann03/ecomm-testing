@@ -10,15 +10,12 @@ public class FilterTest extends BaseTest {
 
     @Test
     public void verifySortByPriceLowToHigh() {
-        // Login
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("standard_user", "secret_sauce");
 
-        // Apply sort filter
         FilterPage filterPage = new FilterPage(driver);
         filterPage.sortByLowToHigh();
 
-        // Verify correct option is selected
         Assert.assertEquals(
                 filterPage.getSelectedSortOption(),
                 "Price (low to high)",
